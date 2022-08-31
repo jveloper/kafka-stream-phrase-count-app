@@ -25,7 +25,6 @@ public class PhraseCountApplication {
         StreamsBuilder streamsBuilder = new StreamsBuilder();
 
         streamsBuilder.<String, String>stream("phrase")
-                //.flatMapValues((key, value) -> Arrays.asList(value.toLowerCase().split(" ")))
                 .groupBy((key, value) -> value)
                 .count(Materialized.with(Serdes.String(), Serdes.Long()))
                 .toStream()
